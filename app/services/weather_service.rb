@@ -1,8 +1,8 @@
-require 'net/http'
-require 'json'
+require "net/http"
+require "json"
 
 class WeatherService
-  OPENWEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather'
+  OPENWEATHER_API_URL = "https://api.openweathermap.org/data/2.5/weather"
   CACHE_EXPIRY = 30.minutes
 
   def self.get_forecast(query, type = :address)
@@ -26,9 +26,9 @@ class WeatherService
   def self.geocode_address(address)
     result = Geocoder.search(address).first
     return nil unless result
-    
+
     {
-      coordinates: [result.latitude, result.longitude],
+      coordinates: [ result.latitude, result.longitude ],
       postal_code: result.postal_code
     }
   end
@@ -36,9 +36,9 @@ class WeatherService
   def self.geocode_zip(zip)
     result = Geocoder.search(zip).first
     return nil unless result
-    
+
     {
-      coordinates: [result.latitude, result.longitude],
+      coordinates: [ result.latitude, result.longitude ],
       postal_code: result.postal_code
     }
   end
@@ -46,7 +46,7 @@ class WeatherService
   def self.fetch_from_cache(location_data)
     cache_key = generate_cache_key(location_data[:coordinates])
     cached_forecast = Rails.cache.read(cache_key)
-    
+
     if cached_forecast
       cached_forecast[:cached] = true
       cached_forecast[:postal_code] = location_data[:postal_code]
@@ -74,8 +74,8 @@ class WeatherService
     {
       lat: coordinates[0],
       lon: coordinates[1],
-      units: 'metric',
-      appid: ENV['OPENWEATHER_API_KEY']
+      units: "metric",
+      appid: ENV["OPENWEATHER_API_KEY"]
     }
   end
 

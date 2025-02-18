@@ -5,7 +5,7 @@ RSpec.describe WeatherController, type: :controller do
     context 'with a valid address' do
       it 'assigns @forecast and renders the index template' do
         forecast = { main: { temp: 15.0, temp_max: 20.0, temp_min: 10.0 }, cached: false }
-        
+
         allow(WeatherService).to receive(:get_forecast).and_return(forecast)
 
         get :index, params: { address: '1600 Amphitheatre Parkway, Mountain View, CA' }
