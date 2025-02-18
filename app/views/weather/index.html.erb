@@ -1,17 +1,33 @@
 <h1>Weather Forecast</h1>
 
-<%= form_with url: weather_index_path, method: :get do |form| %>
-  <%= form.label :address, "Enter Address:" %>
-  <%= form.text_field :address %>
-  <%= form.submit "Get Forecast" %>
-<% end %>
+<div class="search-options">
+  <div class="search-by-address">
+    <h2>By Address</h2>
+    <%= form_with url: weather_index_path, method: :get, local: true do |form| %>
+      <%= form.label :address, "Address:" %>
+      <%= form.text_field :address %>
+      <%= form.submit "Search" %>
+    <% end %>
+  </div>
+
+  <div class="search-by-zip">
+    <h2>By Postal Code</h2>
+    <%= form_with url: weather_index_path, method: :get, local: true do |form| %>
+      <%= form.label :zip, "Postal Code:" %>
+      <%= form.text_field :zip %>
+      <%= form.submit "Search" %>
+    <% end %>
+  </div>
+</div>
 
 <% if @forecast %>
-  <h2>Forecast for <%= params[:address] %></h2>
-  <p><strong>Temperature:</strong> <%= @forecast[:main][:temp] %>°C</p>
-  <p><strong>High:</strong> <%= @forecast[:main][:temp_max] %>°C</p>
-  <p><strong>Low:</strong> <%= @forecast[:main][:temp_min] %>°C</p>
-  <% if @forecast[:cached] %>
-    <p><em>This result was retrieved from the cache.</em></p>
-  <% end %>
+  <div class="forecast-results">
+    <h2>Weather in <%= @query %></h2>
+    <p>Temperature: <%= @forecast[:main][:temp] %>°C</p>
+    <p>High: <%= @forecast[:main][:temp_max] %>°C</p>
+    <p>Low: <%= @forecast[:main][:temp_min] %>°C</p>
+    <% if @forecast[:cached] %>
+      <p class="cached-notice">Retrieved from cache</p>
+    <% end %>
+  </div>
 <% end %>
