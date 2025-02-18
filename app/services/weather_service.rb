@@ -2,7 +2,6 @@ require 'net/http'
 require 'json'
 
 class WeatherService
-  OPENWEATHER_API_KEY = ''
   OPENWEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather'
 
   def self.get_forecast(address)
@@ -25,7 +24,7 @@ class WeatherService
       lat: coordinates[0],
       lon: coordinates[1],
       units: 'metric',
-      appid: OPENWEATHER_API_KEY
+      appid: ENV['OPENWEATHER_API_KEY']
     }
     uri.query = URI.encode_www_form(params)
 
