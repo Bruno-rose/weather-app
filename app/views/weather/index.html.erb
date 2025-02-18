@@ -24,6 +24,9 @@
   <div class="forecast-results">
     <h2>Weather in <%= @query %></h2>
     <p>Temperature: <%= @forecast[:main][:temp] %>°C</p>
+    <% if @forecast[:postal_code].present? %>
+      <p>Postal Code: <%= @forecast[:postal_code] %></p>
+    <% end %>
     <p>High: <%= @forecast[:main][:temp_max] %>°C</p>
     <p>Low: <%= @forecast[:main][:temp_min] %>°C</p>
     <% if @forecast[:cached] %>
