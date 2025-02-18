@@ -1,24 +1,18 @@
-# README
+# Weather App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple Rails application that retrieves weather forecasts for a given address using the OpenWeather API.
 
-Things you may want to cover:
+## Setup
 
-* Ruby version
+1. Clone the repository.
+2. Run `bundle install` to install dependencies.
+3. Set your OpenWeather API key in `app/services/weather_service.rb`.
+4. Run `rails server` to start the application.
 
-* System dependencies
+## Usage
 
-* Configuration
+Enter an address in the input field and click "Get Forecast" to retrieve the current weather forecast.
 
-* Database creation
+## Testing
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run `rails test` to execute the unit tests.
